@@ -14,9 +14,9 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int myCurrentIndex = 0;
   List pages = [
-    CityHomePage(),
-    ChatScreen(),
-    DashBoardScreen(),
+    const CityHomePage(),
+    const ChatScreen(),
+    const DashBoardScreen(),
   ];
   @override
   Widget build(BuildContext context) {

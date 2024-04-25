@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:minto_clone/screens/chat_nav_page.dart';
 import 'package:minto_clone/screens/home_screen.dart';
 import 'package:minto_clone/screens/login_screen.dart';
-import 'package:minto_clone/screens/nav_dashboard_page.dart';
 import 'package:minto_clone/screens/search_screen.dart';
 import 'package:minto_clone/widgets/custom_dialog_widget.dart';
 import 'package:minto_clone/widgets/custom_searchbar.dart';
@@ -234,7 +232,7 @@ class _HomePageState extends State<CityHomePage> {
                             isScrollControlled: true,
                             context: context,
                             builder: (context) {
-                              return ModalBottomSheet();
+                              return const ModalBottomSheet();
                             });
                       },
                     ),

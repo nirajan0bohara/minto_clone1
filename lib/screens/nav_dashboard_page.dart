@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/login_screen.dart';
 import 'package:minto_clone/utils/constants/color.dart';
-import 'package:minto_clone/widgets/get_started_button.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({super.key});
@@ -48,7 +47,7 @@ class DashBoardScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => const LoginScreen(),
                     ),
                   );
                 },

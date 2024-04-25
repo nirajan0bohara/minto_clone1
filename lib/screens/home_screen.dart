@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:minto_clone/screens/city_home_screen.dart';
 import 'package:minto_clone/screens/search_screen.dart';
 import 'package:minto_clone/widgets/bottom_nav_bar.dart';
 import 'package:minto_clone/widgets/custom_searchbar.dart';
