@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/city_home_screen.dart';
+import 'package:minto_clone/screens/otp_verification_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 bool? seenOnboard;
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: CityHomePage(),
+      home: OtpScreen(),
       // seenOnboard == true ? HomeScreen() : OnBoardingScreen(),
     );
   }

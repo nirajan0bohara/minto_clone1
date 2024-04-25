@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 2,
-                    backgroundColor: Colors.grey.shade400,
+                    backgroundColor: kPrimaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Text(
                     'Continue',
                     style: TextStyle(
-                      fontSize: 23,
+                      fontSize: 21,
                       color: Colors.black,
                     ),
                   ),
