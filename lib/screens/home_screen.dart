@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/city_home_screen.dart';
 import 'package:minto_clone/screens/search_screen.dart';
+import 'package:minto_clone/widgets/bottom_nav_bar.dart';
 import 'package:minto_clone/widgets/custom_searchbar.dart';
 
 import '../widgets/home_page_widgets/heading1.dart';
@@ -178,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const CityHomePage(),
+                              builder: (context) => const BottomNavBar(),
                             ),
                           );
                         },

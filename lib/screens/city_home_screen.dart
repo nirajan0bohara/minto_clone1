@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:minto_clone/screens/chat_nav_page.dart';
 import 'package:minto_clone/screens/home_screen.dart';
 import 'package:minto_clone/screens/login_screen.dart';
+import 'package:minto_clone/screens/nav_dashboard_page.dart';
 import 'package:minto_clone/screens/search_screen.dart';
 import 'package:minto_clone/widgets/custom_dialog_widget.dart';
 import 'package:minto_clone/widgets/custom_searchbar.dart';
@@ -229,11 +231,11 @@ class _HomePageState extends State<CityHomePage> {
                       onTap: () {
                         // Add your list item tap action here
                         showModalBottomSheet(
-                isScrollControlled: true,
-                context: context,
-                builder: (context) {
-                  return ModalBottomSheet();
-                });
+                            isScrollControlled: true,
+                            context: context,
+                            builder: (context) {
+                              return ModalBottomSheet();
+                            });
                       },
                     ),
                   ),
@@ -241,99 +243,23 @@ class _HomePageState extends State<CityHomePage> {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 290.0,
-              bottom: 22.0,
-            ),
-            child: FloatingActionButton(
-              backgroundColor: kPrimaryColor,
-              shape: const CircleBorder(side: BorderSide.none),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ),
-                );
-              },
-              child: const Text('Sell'),
-            ),
-          ),
-          _navBar(),
         ],
       ),
-    );
-  }
-
-  Widget _navBar() {
-    return Container(
-      height: 78,
-      margin: const EdgeInsets.only(
-        right: 24,
-        left: 24,
-        bottom: 24,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 0,
-            spreadRadius: 2,
-          ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: navIcons.map((icon) {
-          int index = navIcons.indexOf(icon);
-          bool isSelected = selectedIndex == index;
-          return Material(
-            color: Colors.transparent,
-            child: GestureDetector(
-              onTap: () {
-                // setState(() {
-                //   selectedIndex = index;
-                // });
-              },
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.only(
-                        top: 9,
-                        left: 40,
-                        right: 40,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: Icon(
-                          icon,
-                          color: isSelected ? kPrimaryColor : Colors.white,
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      navTitle[index],
-                      style: TextStyle(
-                        color: isSelected ? kPrimaryColor : Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(),
+        child: FloatingActionButton(
+          backgroundColor: kPrimaryColor,
+          shape: const CircleBorder(side: BorderSide.none),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LoginScreen(),
               ),
-            ),
-          );
-        }).toList(),
+            );
+          },
+          child: const Text('Sell'),
+        ),
       ),
     );
   }
