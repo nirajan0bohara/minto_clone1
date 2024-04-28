@@ -62,7 +62,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     SizedBox(height: sizeV * 7),
                     Padding(
                       padding: const EdgeInsets.all(48.0),
-                      child: Container(
+                      child: SizedBox(
                         height: sizeV * 40,
                         child: SvgPicture.asset(
                           onBoardingData[index].image,

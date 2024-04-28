@@ -1,8 +1,7 @@
-
-
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:minto_clone/screens/otp_verification_screen.dart';
 import 'package:minto_clone/utils/constants/color.dart';
 import 'package:minto_clone/widgets/home_page_widgets/heading1.dart';
 
@@ -49,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const Text('We will send an OTP to your number'),
               const SizedBox(height: 30),
               TextFormField(
+                maxLength: 10,
                 keyboardType: TextInputType.number,
                 cursorColor: Colors.black,
                 controller: phoneController,
@@ -130,7 +130,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const OtpScreen(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     'Continue',
                     style: TextStyle(
@@ -141,14 +148,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 30),
-              Center(
+              const Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0, bottom: 10),
-                  child: Container(
+                  padding: EdgeInsets.only(left: 18.0, bottom: 10),
+                  child: SizedBox(
                     height: 60,
                     width: 350,
                     // color: Colors.grey,
-                    child: const Column(
+                    child: Column(
                       children: [
                         Text(
                           'By continuing, you agree to our',

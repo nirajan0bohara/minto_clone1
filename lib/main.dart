@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minto_clone/screens/onboarding_screen.dart';
+import 'package:minto_clone/screens/Dashboard_screen/dashboard_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 bool? seenOnboard;
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: const OnBoardingScreen(),
+      home: const DashboardScreen1(),
       // seenOnboard == true ? HomeScreen() : OnBoardingScreen(),
     );
   }

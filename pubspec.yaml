@@ -45,6 +45,9 @@ dependencies:
   #for verification page
   pinput: ^4.0.0
 
+  #Provider for state management
+  provider: ^6.1.2
+
   
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

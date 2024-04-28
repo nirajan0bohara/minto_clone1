@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/home_screen.dart';
 import 'package:minto_clone/screens/login_screen.dart';
-import 'package:minto_clone/screens/search_screen.dart';
+import 'package:minto_clone/screens/mobiles_search_screen.dart';
 import 'package:minto_clone/widgets/custom_dialog_widget.dart';
 import 'package:minto_clone/widgets/custom_searchbar.dart';
 
@@ -58,7 +58,7 @@ class _HomePageState extends State<CityHomePage> {
     {"price": 42000, "name": "Realme X2 Pro"},
   ];
 
-  static String ra_emoji = "₹";
+  static String raEmoji = "₹";
 
   List<IconData> navIcons = [
     Icons.home_outlined,
@@ -138,7 +138,7 @@ class _HomePageState extends State<CityHomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SearchScreen(),
+                  builder: (context) => const MobileSearchScreen(),
                 ),
               );
             },
@@ -207,7 +207,7 @@ class _HomePageState extends State<CityHomePage> {
                       //   child: Icon(Icons.phone_android_outlined),
                       // ),
                       title: Text(
-                        '$ra_emoji ${_smartphones[index]['price']}',
+                        '$raEmoji ${_smartphones[index]['price']}',
                       ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

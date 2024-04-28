@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -44,13 +43,13 @@ class CustomSearchBar extends StatelessWidget {
 }
 
 class CustomSearchBar2 extends StatelessWidget {
-  CustomSearchBar2({
+  const CustomSearchBar2({
     super.key,
     required this.text,
-    this.ontap,
+    required this.ontap,
   });
   final String text;
-  Function()? ontap;
+  final Function() ontap;
 
   @override
   Widget build(BuildContext context) {
