@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/Dashboard_screen/custom_text_button.dart';
 
-class ModalBottomSheet extends StatelessWidget {
-  const ModalBottomSheet({
+class DashModalBottomSheet extends StatelessWidget {
+  const DashModalBottomSheet({
     super.key,
   });
 
