@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:minto_clone/screens/login_screen.dart';
+import 'package:minto_clone/screens/Authentication_screens/login_screen.dart';
 import 'package:minto_clone/utils/constants/color.dart';
 import 'package:pinput/pinput.dart';
 
-import '../widgets/home_page_widgets/heading1.dart';
+import '../../widgets/home_page_widgets/heading1.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});

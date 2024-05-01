@@ -1,7 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:minto_clone/screens/otp_verification_screen.dart';
+import 'package:minto_clone/screens/Authentication_screens/otp_verification_screen.dart';
 import 'package:minto_clone/utils/constants/color.dart';
 import 'package:minto_clone/widgets/home_page_widgets/heading1.dart';
 

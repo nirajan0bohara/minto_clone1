@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/home_screen.dart';
-import 'package:minto_clone/screens/login_screen.dart';
-import 'package:minto_clone/screens/mobiles_search_screen.dart';
+import 'package:minto_clone/screens/Authentication_screens/login_screen.dart';
+import 'package:minto_clone/screens/phones_Screens/mobiles_search_screen.dart';
 import 'package:minto_clone/widgets/custom_dialog_widget.dart';
 import 'package:minto_clone/widgets/custom_searchbar.dart';
 

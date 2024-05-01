@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minto_clone/screens/login_screen.dart';
+import 'package:minto_clone/screens/Authentication_screens/login_screen.dart';
 import 'package:minto_clone/utils/constants/color.dart';
 
 class DashBoardScreen extends StatelessWidget {

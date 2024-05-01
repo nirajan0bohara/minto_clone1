@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:minto_clone/screens/home_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -9,12 +9,32 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _userTypeController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
+  String _selectedGender = '';
+
+  @override
+  void dispose() {
+    // Clean up the controllers when the widget is disposed
+    _nameController.dispose();
+    _userTypeController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _locationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Icons.close,
             size: 38,
@@ -22,7 +42,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              // Handle form submission here
+              String name = _nameController.text;
+              String userType = _userTypeController.text;
+              String email = _emailController.text;
+              String phone = _phoneController.text;
+              String location = _locationController.text;
+              // Do something with the data, like updating the user profile
+              // For simplicity, let's just print the values for now
+              print('Name: $name');
+              print('User Type: $userType');
+              print('Email: $email');
+              print('Phone: $phone');
+              print('Gender: $_selectedGender');
+              print('Location: $location');
+            },
             icon: const Icon(
               Icons.check,
               size: 36,
@@ -30,59 +65,159 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Center(
-            child: Column(
-              children: [
-                const CircleAvatar(
-                  radius: 70,
-                  // child: Image.asset(''),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Change your profile picture',
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Column(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Column(
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Name',
-                      labelStyle: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      hintText: 'Hey',
+                  const CircleAvatar(
+                    radius: 70,
+                    child: Icon(
+                      Icons.person,
+                      size: 100,
                     ),
+                    // child: Image.asset(''),
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      hintText: 'Hey',
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Change your profile picture',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal),
                     ),
                   ),
                 ],
               ),
-            ),
+              Column(
+                children: [
+                  TextField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Name',
+                    ),
+                  ),
+                  const SizedBox(height: 12.0),
+                  TextField(
+                    controller: _userTypeController,
+                    decoration: const InputDecoration(
+                      labelText: 'User Type',
+                    ),
+                  ),
+                  const SizedBox(height: 12.0),
+                  TextField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                    ),
+                  ),
+                  const SizedBox(height: 12.0),
+                  TextField(
+                    controller: _phoneController,
+                    decoration: const InputDecoration(
+                      labelText: 'Phone',
+                    ),
+                  ),
+                  const SizedBox(height: 12.0),
+                  GestureDetector(
+                    onTap: () {
+                      _showGenderDialog();
+                    },
+                    child: AbsorbPointer(
+                      child: TextField(
+                        controller:
+                            TextEditingController(text: _selectedGender),
+                        decoration: const InputDecoration(
+                          labelText: 'Gender',
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12.0),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
+                    },
+                    child: AbsorbPointer(
+                      child: TextField(
+                        controller: _locationController,
+                        decoration: const InputDecoration(
+                          labelText: 'Location',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24.0),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Delete Account',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 18,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.red,
+                    decorationThickness: 2,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
+    );
+  }
+
+  void _showGenderDialog() {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: const Text('Select Gender'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                title: const Text('Male'),
+                onTap: () {
+                  setState(() {
+                    _selectedGender = 'Male';
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Female'),
+                onTap: () {
+                  setState(() {
+                    _selectedGender = 'Female';
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Other'),
+                onTap: () {
+                  setState(() {
+                    _selectedGender = 'Other';
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
