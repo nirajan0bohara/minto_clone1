@@ -232,7 +232,8 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                     'Used for',
                     style: TextStyle(fontSize: 23),
                   ),
-                )
+                ),
+                const SizedBox(height: 15),
               ],
             ),
           ),
