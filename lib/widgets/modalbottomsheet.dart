@@ -108,54 +108,59 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Column(
-                      children: [
-                        Text(
-                          'Product Description',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                    const Padding(
+                      padding: EdgeInsets.only(left: 14.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Product Description',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(18.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  MyText(text: 'Brand'),
-                                  MyText(text: 'Model'),
-                                  MyText(text: 'Storage'),
-                                  MyText(text: 'Display'),
-                                  MyText(text: 'Processor'),
-                                  MyText(text: 'Camera'),
-                                  MyText(text: 'Battery'),
-                                  MyText(text: 'Operating System'),
-                                  MyText(text: 'Other Features'),
-                                  MyText(text: 'Color Options'),
-                                ],
-                              ),
-                              SizedBox(width: 20),
-                              Column(
-                                children: [
-                                  MyText2(text: 'Samsung'),
-                                  MyText2(text: 'Galaxy S24 Ultra'),
-                                  MyText2(text: '8 GB/256 GB'),
-                                  MyText2(text: '6.9 inches'),
-                                  MyText2(text: 'Snapdragon 8 Gen 2'),
-                                  MyText2(text: '108 MP main sensor'),
-                                  MyText2(text: '5000 mAh battery'),
-                                  MyText2(text: 'Android 13'),
-                                  MyText2(text: '5G connectivity, '),
-                                  MyText2(text: 'Black, Bronze, Green'),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+                          Padding(
+                            padding: EdgeInsets.all(18.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    MyText(text: 'Brand'),
+                                    MyText(text: 'Model'),
+                                    MyText(text: 'Storage'),
+                                    MyText(text: 'Display'),
+                                    MyText(text: 'Processor'),
+                                    MyText(text: 'Camera'),
+                                    MyText(text: 'Battery'),
+                                    MyText(text: 'Operating System'),
+                                    MyText(text: 'Other Features'),
+                                    MyText(text: 'Color Options'),
+                                  ],
+                                ),
+                                SizedBox(width: 16),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    MyText2(text: 'Samsung'),
+                                    MyText2(text: 'Galaxy S24 Ultra'),
+                                    MyText2(text: '8 GB/256 GB'),
+                                    MyText2(text: '6.9 inches'),
+                                    MyText2(text: 'Snapdragon 8 Gen 2'),
+                                    MyText2(text: '108 MP main sensor'),
+                                    MyText2(text: '5000 mAh battery'),
+                                    MyText2(text: 'Android 13'),
+                                    MyText2(text: '5G connectivity, '),
+                                    MyText2(text: 'Black, Bronze, Green'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 8),
                     const Padding(
