@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minto_clone/screens/phones_Screens/phone_series.dart';
+import 'package:minto_clone/screens/phones_Screens/device_details_page.dart';
 
 class PhoneModels extends StatefulWidget {
   const PhoneModels({super.key});
@@ -47,7 +47,7 @@ class _PhoneModelsState extends State<PhoneModels> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const PhoneSeries(),
+                              builder: (context) => const DeviceDetailsPage(),
                             ),
                           );
                         },

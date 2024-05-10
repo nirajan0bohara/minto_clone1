@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:minto_clone/screens/home_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -9,6 +12,23 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  File? _image;
+  final picker = ImagePicker();
+
+  Future getImageGallery() async {
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 80,
+    );
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image pickedd');
+      }
+    });
+  }
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _userTypeController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -72,16 +92,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: <Widget>[
               Column(
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 70,
-                    child: Icon(
-                      Icons.person,
-                      size: 100,
-                    ),
-                    // child: Image.asset(''),
+                    child: _image != null
+                        ? Image.file(
+                            _image!.absolute,
+                            fit: BoxFit.cover,
+                          )
+                        : const Center(
+                            child: Icon(
+                              Icons.add_a_photo,
+                              size: 40,
+                            ),
+                          ),
+
+                    //child: InkWell(
+                    //   onTap: () {
+                    //     getImageGallery();
+                    //   },
+                    //   child: const Icon(Icons.add_a_photo),
+                    // ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      getImageGallery();
+                    },
                     child: const Text(
                       'Change your profile picture',
                       style: TextStyle(

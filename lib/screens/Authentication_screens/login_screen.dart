@@ -1,9 +1,11 @@
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:minto_clone/screens/Authentication_screens/clickable_text.dart';
 import 'package:minto_clone/screens/Authentication_screens/otp_verification_screen.dart';
+import 'package:minto_clone/screens/Authentication_screens/otpmodel.dart';
 import 'package:minto_clone/utils/constants/color.dart';
 import 'package:minto_clone/widgets/home_page_widgets/heading1.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,7 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   //country picker
   Country selectedCountry = Country(
@@ -27,10 +30,19 @@ class _LoginScreenState extends State<LoginScreen> {
       displayName: "India",
       displayNameNoCountryCode: "IN",
       e164Key: "");
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    phoneController.selection = TextSelection.fromPosition(
-      TextPosition(offset: phoneController.text.length),
+    final otpModel = Provider.of<OTPModel>(context);
+
+    _phoneController.selection = TextSelection.fromPosition(
+      TextPosition(offset: _phoneController.text.length),
     );
     return Scaffold(
       appBar: AppBar(),
@@ -47,75 +59,85 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 5),
               const Text('We will send an OTP to your number'),
               const SizedBox(height: 30),
-              TextFormField(
-                maxLength: 10,
-                keyboardType: TextInputType.number,
-                cursorColor: Colors.black,
-                controller: phoneController,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    phoneController.text = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  hintText: '0 0 0 - 0 0 0 - 0 0 0 0',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                      color: Colors.black12,
-                    ),
+              Form(
+                key: _formKey,
+                child: TextFormField(
+                  maxLength: 10,
+                  keyboardType: TextInputType.number,
+                  cursorColor: Colors.black,
+                  controller: _phoneController,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                      color: Colors.black12,
+                  onChanged: (value) {
+                    setState(() {
+                      _phoneController.text = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    hintText: '0 0 0 - 0 0 0 - 0 0 0 0',
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: Colors.black12,
+                      ),
                     ),
-                  ),
-                  prefixIcon: Container(
-                    padding: const EdgeInsets.all(18.0),
-                    child: InkWell(
-                      onTap: () {
-                        showCountryPicker(
-                          countryListTheme: const CountryListThemeData(
-                              bottomSheetHeight: 500),
-                          context: context,
-                          onSelect: (value) {
-                            setState(() {
-                              selectedCountry = value;
-                            });
-                          },
-                        );
-                      },
-                      child: Text(
-                        '${selectedCountry.flagEmoji} +${selectedCountry.phoneCode}',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: Colors.black12,
+                      ),
+                    ),
+                    prefixIcon: Container(
+                      padding: const EdgeInsets.all(18.0),
+                      child: InkWell(
+                        onTap: () {
+                          showCountryPicker(
+                            countryListTheme: const CountryListThemeData(
+                                bottomSheetHeight: 500),
+                            context: context,
+                            onSelect: (value) {
+                              setState(() {
+                                selectedCountry = value;
+                              });
+                            },
+                          );
+                        },
+                        child: Text(
+                          '${selectedCountry.flagEmoji} +${selectedCountry.phoneCode}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
+                    suffixIcon: _phoneController.text.length > 9
+                        ? Container(
+                            height: 30,
+                            width: 30,
+                            margin: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: kPrimaryColor,
+                            ),
+                            child: const Icon(
+                              Icons.done,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          )
+                        : null,
                   ),
-                  suffixIcon: phoneController.text.length > 9
-                      ? Container(
-                          height: 30,
-                          width: 30,
-                          margin: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: kPrimaryColor,
-                          ),
-                          child: const Icon(
-                            Icons.done,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                        )
-                      : null,
+                  validator: (value) {
+                    if (value!.length != 10) {
+                      return 'Invalid phone number';
+                    } else {
+                      return null;
+                    }
+                  },
                 ),
               ),
               const SizedBox(height: 50),
@@ -130,21 +152,38 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const OtpScreen(),
-                      ),
-                    );
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      // Call requestOTP and await the response
+                      Future<Map<String, dynamic>> data =
+                          otpModel.requestOTP(_phoneController.text);
+
+                      // Await the response and access the message key
+                      Map<String, dynamic> responseData = await data;
+                      String? message = responseData['message'];
+
+                      // Print the message
+                      // print('Message: $message');
+                      if (message == 'Otp sent successfully!!') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                OtpScreen(responseData: responseData),
+                          ),
+                        );
+                      }
+                    }
                   },
-                  child: const Text(
-                    'Continue',
-                    style: TextStyle(
-                      fontSize: 21,
-                      color: Colors.black,
-                    ),
-                  ),
+                  child: otpModel.isLoading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : const Text(
+                          'Continue',
+                          style: TextStyle(
+                            fontSize: 21,
+                            color: Colors.black,
+                          ),
+                        ),
                 ),
               ),
               const SizedBox(height: 30),
@@ -172,58 +211,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-//This is for clickable text
-class LinkableText extends StatefulWidget {
-  const LinkableText({super.key});
-
-  @override
-  State<LinkableText> createState() => _LinkableTextState();
-}
-
-class _LinkableTextState extends State<LinkableText> {
-  @override
-  Widget build(BuildContext context) {
-    TextStyle defaultStyle = const TextStyle(color: Colors.black);
-    TextStyle linkStyle = const TextStyle(color: Colors.blue);
-    return RichText(
-      text: TextSpan(
-        style: defaultStyle,
-        children: <TextSpan>[
-          TextSpan(
-              text: 'Terms & Conditions',
-              style: linkStyle,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () async {
-                  //here is action after clicking in the text
-                }),
-          TextSpan(
-            text: ', ',
-            style: defaultStyle,
-          ),
-          TextSpan(
-              text: 'Refund ',
-              style: linkStyle,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  //here is action after clicking in the text
-                }),
-          TextSpan(
-            text: 'and ',
-            style: defaultStyle,
-          ),
-          TextSpan(
-              text: 'Privacy Policy',
-              style: linkStyle,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  //here is action after clicking in the text
-                }),
-        ],
       ),
     );
   }

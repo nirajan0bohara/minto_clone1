@@ -1,5 +1,5 @@
+import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class DeviceDetailsPage extends StatefulWidget {
   const DeviceDetailsPage({super.key});
@@ -9,6 +9,14 @@ class DeviceDetailsPage extends StatefulWidget {
 }
 
 class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
+  int tag = 1;
+  List<String> options = [
+    '3 Months',
+    '6 Months',
+    '1 year',
+    'More than 1 year',
+  ];
+
   String selectedStorage = 'None selected';
   @override
   Widget build(BuildContext context) {
@@ -234,6 +242,28 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                   ),
                 ),
                 const SizedBox(height: 15),
+                Column(
+                  children: [
+                    ChipsChoice.single(
+                      value: tag,
+                      onChanged: (val) => setState(
+                        () => tag = val,
+                      ),
+                      choiceItems: C2Choice.listFrom(
+                        source: options,
+                        value: (i, v) => i,
+                        label: (i, v) => v,
+                      ),
+                      choiceStyle: const C2ChipStyle(
+                        // color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
+                      wrapped: true,
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

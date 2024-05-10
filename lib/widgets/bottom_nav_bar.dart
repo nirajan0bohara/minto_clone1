@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:minto_clone/screens/chat_screens/chat_nav_page.dart';
+import 'package:minto_clone/screens/Dashboard_screen/dashboard_screen.dart';
+import 'package:minto_clone/screens/chat_screens/login_chat_screen.dart';
 import 'package:minto_clone/screens/city_home_screen.dart';
-import 'package:minto_clone/screens/Dashboard_screen/nav_dashboard_page.dart';
 import 'package:minto_clone/utils/constants/color.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -15,8 +15,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int myCurrentIndex = 0;
   List pages = [
     const CityHomePage(),
-    const ChatScreen(),
-    const DashBoardScreen(),
+    // const ChatScreen(),
+    // const DashBoardScreen(),
+    const ChatScreen1(),
+    const DashboardScreen1(),
   ];
   @override
   Widget build(BuildContext context) {

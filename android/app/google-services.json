@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "999862927223",
+    "project_id": "minto-clone-db541",
+    "storage_bucket": "minto-clone-db541.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999862927223:android:2fcab16eaed59cf75e6b72",
+        "android_client_info": {
+          "package_name": "com.example.minto_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2dAmGBWRHOca0iOEWCDx2dnkOXcNcNgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

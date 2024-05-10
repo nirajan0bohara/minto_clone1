@@ -1,20 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:minto_clone/screens/Authentication_screens/login_screen.dart';
+import 'package:minto_clone/screens/Authentication_screens/verifymodel.dart';
 import 'package:minto_clone/utils/constants/color.dart';
 import 'package:pinput/pinput.dart';
-
+import 'package:provider/provider.dart';
 import '../../widgets/home_page_widgets/heading1.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+  const OtpScreen({
+    super.key,
+    required this.responseData,
+  });
+  final Map<String, dynamic> responseData;
+
+  void setResponseData() {
+  }
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  final TextEditingController _otpController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    _otpController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final verifyModel = Provider.of<VerifyModel>(context, listen: false);
+    String? phoneNumber = widget.responseData['phonenumber'];
+    String? sessionid = widget.responseData['sessionid'];
+    print(dotenv.env["AUTH_TOKEN"]);
+    // print(sessionId);
+    _otpController.selection = TextSelection.fromPosition(
+      TextPosition(offset: _otpController.text.length),
+    );
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
@@ -31,9 +57,9 @@ class _OtpScreenState extends State<OtpScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Sent on +91 1234567890',
-                    style: TextStyle(fontSize: 20),
+                  Text(
+                    'Sent on +$phoneNumber',
+                    style: const TextStyle(fontSize: 20),
                   ),
                   TextButton(
                     onPressed: () {
@@ -55,22 +81,33 @@ class _OtpScreenState extends State<OtpScreen> {
                 ],
               ),
               const SizedBox(height: 30),
-              Pinput(
-                length: 6,
-                showCursor: true,
-                defaultPinTheme: PinTheme(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: Colors.green.shade300,
+              Form(
+                key: _formKey,
+                child: Pinput(
+                  controller: _otpController,
+                  length: 6,
+                  showCursor: true,
+                  defaultPinTheme: PinTheme(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: Colors.green.shade300,
+                      ),
+                    ),
+                    textStyle: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
-                  textStyle: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter the OTP';
+                    }
+                    // Add more validation if needed
+                    return null;
+                  },
                 ),
               ),
               const SizedBox(height: 26),
@@ -95,7 +132,31 @@ class _OtpScreenState extends State<OtpScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    print("numvbeer");
+                    if (_formKey.currentState!.validate()) {
+                      print(_otpController.text);
+
+                      Future<Map<String, dynamic>?> data =
+                          verifyModel.otpVerification(
+                              phoneNumber!, _otpController.text, sessionid!);
+
+                      // Await the response and access the message key
+                      Map<String, dynamic>? responseData = await data;
+                      String? message = responseData?['message'];
+
+                      if (message == 'OTP Verified') {
+                        print('Verified successfully');
+                        // OTP verified successfully
+                        // Navigate to the next screen or perform any action
+                      } else {
+                        print('Verification failed');
+
+                        // OTP verification failed
+                        // Handle accordingly
+                      }
+                    }
+                  },
                   child: const Text(
                     'Verify and Proceed',
                     style: TextStyle(
@@ -105,7 +166,6 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
             ],
           ),
         ),

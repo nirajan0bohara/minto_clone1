@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:minto_clone/screens/phones_Screens/device_details_page.dart';
-import 'package:minto_clone/screens/phones_Screens/phone_brand_screen.dart';
+import 'package:minto_clone/screens/Authentication_screens/otpmodel.dart';
+import 'package:minto_clone/screens/Dashboard_screen/dashboard_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'screens/Authentication_screens/verifymodel.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 bool? seenOnboard;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+// ...firebase initialized
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   //to load the onboarding screen for the first time only
   SharedPreferences pref = await SharedPreferences.getInstance();
 
@@ -22,15 +33,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Minto",
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => OTPModel()),
+        ChangeNotifierProvider(create: (_) => VerifyModel()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Minto",
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          useMaterial3: true,
+        ),
+        home: const DashboardScreen1(),
+        // seenOnboard == true ? HomeScreen() : OnBoardingScreen(),
       ),
-      home: const DeviceDetailsPage(),
-      // seenOnboard == true ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }
