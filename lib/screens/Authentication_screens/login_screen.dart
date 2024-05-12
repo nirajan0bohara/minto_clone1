@@ -4,6 +4,7 @@ import 'package:minto_clone/screens/Authentication_screens/clickable_text.dart';
 import 'package:minto_clone/screens/Authentication_screens/otp_verification_screen.dart';
 import 'package:minto_clone/screens/Authentication_screens/otpmodel.dart';
 import 'package:minto_clone/utils/constants/color.dart';
+import 'package:minto_clone/utils/show_snack_bar.dart';
 import 'package:minto_clone/widgets/home_page_widgets/heading1.dart';
 import 'package:provider/provider.dart';
 
@@ -165,6 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Print the message
                       // print('Message: $message');
                       if (message == 'Otp sent successfully!!') {
+                        showSnackBar(context, 'Otp sent successfully');
                         Navigator.push(
                           context,
                           MaterialPageRoute(

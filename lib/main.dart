@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/Authentication_screens/otpmodel.dart';
+import 'package:minto_clone/screens/Dashboard_screen/asd2_screen.dart';
 import 'package:minto_clone/screens/Dashboard_screen/dashboard_screen.dart';
+import 'package:minto_clone/screens/phones_Screens/device_details_page.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
           useMaterial3: true,
         ),
-        home: const DashboardScreen1(),
+        home: const DeviceDetailsPage(),
         // seenOnboard == true ? HomeScreen() : OnBoardingScreen(),
       ),
     );

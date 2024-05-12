@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/Dashboard_screen/custom_text_button.dart';
+import 'package:minto_clone/screens/Dashboard_screen/profile_screen.dart';
 
 class DashModalBottomSheet extends StatelessWidget {
   const DashModalBottomSheet({
@@ -9,7 +10,7 @@ class DashModalBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.44,
+      height: MediaQuery.of(context).size.height * 0.46,
       width: double.infinity,
       child: Column(
         children: [
@@ -31,6 +32,10 @@ class DashModalBottomSheet extends StatelessWidget {
                 CustomTextButton(
                   onPressed: () {
                     // Define your onPressed logic here
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (ctx) => const ProfileScreen()));
                   },
                   text: 'Update Profile',
                 ),

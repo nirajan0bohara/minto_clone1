@@ -1,5 +1,8 @@
 import 'package:chips_choice/chips_choice.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:minto_clone/utils/constants/color.dart';
 
 class DeviceDetailsPage extends StatefulWidget {
   const DeviceDetailsPage({super.key});
@@ -33,6 +36,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
         ),
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
@@ -55,7 +59,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                   children: [
                     SizedBox(
                       height: 150,
-                      width: 150,
+                      width: 135,
                       child: Image.asset("assets/realme.jpg"),
                     ),
                     Container(
@@ -175,9 +179,9 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                         children: [
                           Text(
                             'Price',
-                            style: TextStyle(fontSize: 24),
+                            style: TextStyle(fontSize: 18),
                           ),
-                          SizedBox(width: 35),
+                          SizedBox(width: 23),
                           SizedBox(
                             height: 20,
                             width: 130,
@@ -193,17 +197,18 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                 ),
                 const SizedBox(height: 38),
                 const Padding(
-                  padding: EdgeInsets.only(left: 10.0),
+                  padding: EdgeInsets.only(left: 2.0),
                   child: Text(
                     'Condition of your device',
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                      fontSize: 23,
+                      fontSize: 18,
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
                 Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
                   padding: const EdgeInsets.only(
                     top: 20,
                     right: 18,
@@ -233,39 +238,118 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 22),
                 const Padding(
-                  padding: EdgeInsets.only(left: 10.0),
+                  padding: EdgeInsets.only(left: 6.0),
                   child: Text(
                     'Used for',
-                    style: TextStyle(fontSize: 23),
+                    style: TextStyle(fontSize: 18),
                   ),
                 ),
                 const SizedBox(height: 15),
-                Column(
-                  children: [
-                    ChipsChoice.single(
-                      value: tag,
-                      onChanged: (val) => setState(
-                        () => tag = val,
-                      ),
-                      choiceItems: C2Choice.listFrom(
-                        source: options,
-                        value: (i, v) => i,
-                        label: (i, v) => v,
-                      ),
-                      choiceStyle: const C2ChipStyle(
-                        // color: Colors.white,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Wrap(
+                    spacing: 20,
+                    runSpacing: 15,
+                    children: [
+                      BrandWarrentyButton(text: '0-3 Months', option: 'A'),
+                      BrandWarrentyButton(text: '3-6 Months', option: 'B'),
+                      BrandWarrentyButton(text: '6-12 Months', option: 'C'),
+                      BrandWarrentyButton(
+                          text: 'More than 1 year', option: 'D'),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Padding(
+                  padding: EdgeInsets.only(left: 6.0),
+                  child: Text(
+                    'Mobile under brand warrenty?',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                const SizedBox(
+                  height: 60,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BrandWarrentyButton(
+                          option: 'A',
+                          text: 'Yes',
                         ),
-                      ),
-                      wrapped: true,
+                        BrandWarrentyButton(
+                          option: 'B',
+                          text: 'No',
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+//Used for and brand warrenty button
+class BrandWarrentyButton extends StatelessWidget {
+  const BrandWarrentyButton({
+    super.key,
+    required this.text,
+    required this.option,
+  });
+
+  final String text;
+  final String option;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        height: 40,
+        width: 160,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              offset: const Offset(0.0, 7),
+              color: Colors.grey.withOpacity(.1),
+              spreadRadius: 3,
+              blurRadius: 5,
+            ),
+          ],
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(8),
+            bottomRight: Radius.circular(8),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 12.0),
+          child: Row(
+            children: [
+              Container(
+                height: 28,
+                width: 16,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Center(
+                  child: Text(option),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(text),
+            ],
           ),
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:minto_clone/screens/Authentication_screens/login_screen.dart';
 import 'package:minto_clone/screens/Authentication_screens/verifymodel.dart';
 import 'package:minto_clone/utils/constants/color.dart';
+import 'package:minto_clone/utils/show_snack_bar.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/home_page_widgets/heading1.dart';
@@ -14,8 +15,7 @@ class OtpScreen extends StatefulWidget {
   });
   final Map<String, dynamic> responseData;
 
-  void setResponseData() {
-  }
+  void setResponseData() {}
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -111,12 +111,15 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
               ),
               const SizedBox(height: 26),
-              const Center(
-                child: Text(
-                  'Resend OTP',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.red,
+              Center(
+                child: InkWell(
+                  onTap: () {},
+                  child: const Text(
+                    'Resend OTP',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
               ),
@@ -146,10 +149,13 @@ class _OtpScreenState extends State<OtpScreen> {
                       String? message = responseData?['message'];
 
                       if (message == 'OTP Verified') {
+                        showSnackBar(context, 'Verified successfully');
+                        Navigator.pop(context);
                         print('Verified successfully');
                         // OTP verified successfully
                         // Navigate to the next screen or perform any action
                       } else {
+                        showSnackBar(context, 'Verification failed');
                         print('Verification failed');
 
                         // OTP verification failed
