@@ -43,7 +43,7 @@ class BlockedChatScreen extends StatelessWidget {
           Text(
             'Your Blocked List is empty',
             style: TextStyle(
-              fontSize: 32,
+              fontSize: 30,
               color: kPrimaryColor,
             ),
           ),

@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:minto_clone/utils/constants/color.dart';
-import 'package:minto_clone/widgets/get_started_button.dart';
 
 class Ads2Screen extends StatefulWidget {
   const Ads2Screen({super.key});

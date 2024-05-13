@@ -12,12 +12,12 @@ class ModalBottomSheetButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(
         left: 22.0,
-        top: 14,
+        top: 10,
         bottom: 10,
       ),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: 65,
+        height: 50,
         child: Row(
           children: [
             GetStartButton(

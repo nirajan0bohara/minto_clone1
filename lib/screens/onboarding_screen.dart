@@ -80,7 +80,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             style: kTitle,
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: sizeV * 1),
+                          SizedBox(height: sizeV * 0.9),
                           Text(
                             onBoardingData[index].description,
                             style: kBodyText1,

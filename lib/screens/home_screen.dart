@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:minto_clone/screens/city_home_screen.dart';
 import 'package:minto_clone/screens/search_screen.dart';
 import 'package:minto_clone/widgets/bottom_nav_bar.dart';
 import 'package:minto_clone/widgets/custom_searchbar.dart';
@@ -104,28 +106,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: ((context, index) {
                         return Column(
                           children: [
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    offset: const Offset(0.0, 7),
-                                    color: Colors.grey.withOpacity(.1),
-                                    spreadRadius: 3,
-                                    blurRadius: 5,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const BottomNavBar(),
                                   ),
-                                ],
-                                color: Colors.white,
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
+                                );
+                              },
+                              child: Container(
+                                height: 100,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      offset: const Offset(0.0, 7),
+                                      color: Colors.grey.withOpacity(.1),
+                                      spreadRadius: 3,
+                                      blurRadius: 5,
+                                    ),
+                                  ],
+                                  color: Colors.white,
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
                                 ),
-                              ),
-                              child: const Center(
-                                child: Image(
-                                  image: AssetImage(
-                                      'assets/homepage_icon/mumbai.png'),
+                                child: const Center(
+                                  child: Image(
+                                    image: AssetImage(
+                                        'assets/homepage_icon/mumbai.png'),
+                                  ),
                                 ),
                               ),
                             ),

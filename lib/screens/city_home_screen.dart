@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/home_screen.dart';
 import 'package:minto_clone/screens/Authentication_screens/login_screen.dart';
 import 'package:minto_clone/screens/phones_Screens/mobiles_search_screen.dart';
+import 'package:minto_clone/screens/phones_Screens/phone_brand_screen.dart';
 import 'package:minto_clone/widgets/custom_dialog_widget.dart';
 import 'package:minto_clone/widgets/custom_searchbar.dart';
 
@@ -252,7 +253,7 @@ class _HomePageState extends State<CityHomePage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const LoginScreen(),
+                builder: (context) => const PhoneBrandScreen(),
               ),
             );
           },

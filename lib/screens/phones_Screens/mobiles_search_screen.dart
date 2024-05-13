@@ -104,7 +104,7 @@ class _MobileSearchScreenState extends State<MobileSearchScreen> {
         backgroundColor: Colors.white,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 80.0, top: 10),
+            padding: const EdgeInsets.only(right: 60.0, top: 13),
             child: SizedBox(
               width: 278,
               height: 20,

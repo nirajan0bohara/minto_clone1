@@ -1,8 +1,4 @@
-import 'package:chips_choice/chips_choice.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:minto_clone/utils/constants/color.dart';
 
 class DeviceDetailsPage extends StatefulWidget {
   const DeviceDetailsPage({super.key});
@@ -12,14 +8,6 @@ class DeviceDetailsPage extends StatefulWidget {
 }
 
 class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
-  int tag = 1;
-  List<String> options = [
-    '3 Months',
-    '6 Months',
-    '1 year',
-    'More than 1 year',
-  ];
-
   String selectedStorage = 'None selected';
   @override
   Widget build(BuildContext context) {
@@ -250,7 +238,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: Wrap(
-                    spacing: 20,
+                    spacing: 22,
                     runSpacing: 15,
                     children: [
                       BrandWarrentyButton(text: '0-3 Months', option: 'A'),

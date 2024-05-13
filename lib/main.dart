@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:minto_clone/screens/Authentication_screens/login_screen.dart';
 import 'package:minto_clone/screens/Authentication_screens/otpmodel.dart';
-import 'package:minto_clone/screens/Dashboard_screen/asd2_screen.dart';
-import 'package:minto_clone/screens/Dashboard_screen/dashboard_screen.dart';
-import 'package:minto_clone/screens/phones_Screens/device_details_page.dart';
+import 'package:minto_clone/screens/home_screen.dart';
+import 'package:minto_clone/screens/onboarding_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        // ChangeNotifierProvider(create: (_) => OTPProvider()),
         ChangeNotifierProvider(create: (_) => OTPModel()),
         ChangeNotifierProvider(create: (_) => VerifyModel()),
       ],
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
           useMaterial3: true,
         ),
-        home: const DeviceDetailsPage(),
+        home:
+            seenOnboard == true ? const HomeScreen() : const OnBoardingScreen(),
         // seenOnboard == true ? HomeScreen() : OnBoardingScreen(),
       ),
     );

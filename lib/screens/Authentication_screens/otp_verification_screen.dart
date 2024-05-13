@@ -15,8 +15,6 @@ class OtpScreen extends StatefulWidget {
   });
   final Map<String, dynamic> responseData;
 
-  void setResponseData() {}
-
   @override
   State<OtpScreen> createState() => _OtpScreenState();
 }
@@ -34,7 +32,7 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     final verifyModel = Provider.of<VerifyModel>(context, listen: false);
-    String? phoneNumber = widget.responseData['phonenumber'];
+    final String phoneNumber = widget.responseData['phonenumber'];
     String? sessionid = widget.responseData['sessionid'];
     print(dotenv.env["AUTH_TOKEN"]);
     // print(sessionId);
@@ -58,7 +56,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Sent on +$phoneNumber',
+                    'Sent on +91 $phoneNumber',
                     style: const TextStyle(fontSize: 20),
                   ),
                   TextButton(
@@ -113,7 +111,10 @@ class _OtpScreenState extends State<OtpScreen> {
               const SizedBox(height: 26),
               Center(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    // Future<Map<String, dynamic>> data =
+                    //       otpModel.requestOTP(_phoneController.text);
+                  },
                   child: const Text(
                     'Resend OTP',
                     style: TextStyle(

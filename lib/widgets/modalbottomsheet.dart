@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:minto_clone/widgets/modal_bottom_sheet_button.dart';
 import '../utils/constants/color.dart';
 
@@ -32,7 +33,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
           const SizedBox(height: 10),
           Container(
             color: Colors.grey,
-            height: 630,
+            height: 605,
             width: double.infinity,
             child: ListView(
               children: [
@@ -54,7 +55,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                     ),
                   ],
                   options: CarouselOptions(
-                    height: 260.0,
+                    height: 240.0,
                     viewportFraction: 1.5,
                     initialPage: 0,
                     scrollDirection: Axis.horizontal,
@@ -64,7 +65,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Row(
                         children: [
                           const SizedBox(
@@ -74,7 +75,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                               title: Text(
                                 '27000',
                                 style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -84,7 +85,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 50),
+                          const SizedBox(width: 40),
                           Column(
                             children: [
                               ElevatedButton(
@@ -121,7 +122,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(18.0),
+                            padding: EdgeInsets.all(14.0),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -140,7 +141,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                                     MyText(text: 'Color Options'),
                                   ],
                                 ),
-                                SizedBox(width: 16),
+                                SizedBox(width: 12),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

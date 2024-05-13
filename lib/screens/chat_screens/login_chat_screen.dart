@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minto_clone/screens/chat_screens/blocked_chat_screen.dart';
 import 'package:minto_clone/utils/constants/color.dart';
+import 'package:minto_clone/widgets/bottom_nav_bar.dart';
 
 class ChatScreen1 extends StatelessWidget {
   const ChatScreen1({super.key});
@@ -9,6 +10,16 @@ class ChatScreen1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const BottomNavBar(),
+              ),
+            );
+          },
+        ),
         title: const Text(
           'Messages',
           style: TextStyle(
